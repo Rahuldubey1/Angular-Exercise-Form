@@ -19,15 +19,12 @@
                               <label>Date:</label><br>
                               <input type="date" formControlName="date" class="form-control">
                             </div>
-                            <small class="text-danger"
-                            *ngIf="(createUser.get('date')!.invalid && createUser.get('date')!.touched) || (createUser.get('date')!.untouched && submitted)"> 
-                                <span *ngIf="f.date.errors?.pattern">Only char allowed</span>                              
-                                <span *ngIf="f.date.errors?.maxlength">Only 100 char allowed</span>                              
-                                <span *ngIf="f.date.errors?.required">Please enter valid EventName!</span>   
-                            </small>
+                            <div class="error-text" *ngIf="message">
+                                <p>{{message}}</p>
+                              </div>
                             <div class="form-group">
                               <label>Time:</label><br>
-                              <input type="text" formControlName="time" class="form-control">
+                              <input type="time" formControlName="time" class="form-control">
                             </div>
                             <div class="form-group">
                               <label>Address:</label><br>
@@ -43,7 +40,7 @@
                             </div>
                         </div><br>
                         <button class="btn btn-lg btn-primary pull-xs-right" type="submit"> Save</button>
-                        <button class="btn btn-lg btn-primary pull-xs-right" type="submit"> Cancel</button>
+                        <button class="btn" (click)="cancel()"> Cancel</button>
                     </form>
                 </div>
             </div>
