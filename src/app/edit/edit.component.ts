@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { ServicesService } from '../services.service';
 
 
 
@@ -15,8 +16,9 @@ export class EditComponent implements OnInit {
   submitted:boolean = false;
   date:any;
   message='';
+  editData:any
   
-  constructor(private router:Router) { }
+  constructor(private router:Router,private service: ServicesService) { }
 
   ngOnInit(): void {
     this.createUser = new FormGroup({
@@ -27,6 +29,17 @@ export class EditComponent implements OnInit {
       'city' : new FormControl('',Validators.required),
       'country' : new FormControl('',Validators.required)
     });
+    this.editData= this.service.getItem()
+    if(this.editData){
+      this.createUser.patchValue({
+        eventName: this.editData.eventName,
+        date : this.editData.date,
+        time : this.editData.time,
+        address: this.editData.address,
+        city : this.editData.city,
+        country : this.editData.country
+      })
+    }
   }
 
   submitUser(){
@@ -47,8 +60,19 @@ export class EditComponent implements OnInit {
       country : this.createUser.value.country
     }
     var value:any = []
+    var item = localStorage.getItem('user')
+    if(item){
+      var length = JSON.parse(item)
+      for(let i =0 ; i<length ; i++){
+        var rahul = []
+        rahul.push(item[i])
+      }console.log(rahul)
+    }
+    if(item){
+      value.push(JSON.parse(item))
+    }
     value.push(data)
-    console.log(value)
+
     if(this.createUser.valid == true && this.message == ''){
       this.router.navigateByUrl('/home') 
       localStorage.setItem('user',JSON.stringify(value))
@@ -57,11 +81,10 @@ export class EditComponent implements OnInit {
   get f(){
     return this.createUser.controls
   }
-  checkValidDate(data:any){
+  checkValidDate(data:any) {
     let currentDate = new Date();
     data = data.split('-');
     if(data[0] < currentDate.getFullYear()){
-      alert("1")
       return "Please don't enter date from past";
     }
     if(data[2] < currentDate.getDate() && (data[1] < currentDate.getMonth()+1) && ((data[0] < currentDate.getFullYear()))){
@@ -77,7 +100,6 @@ export class EditComponent implements OnInit {
     return null;
   }
   cancel(){
-    alert("12121")
     this.createUser.patchValue({
       eventName: '',
       date : '',
@@ -87,4 +109,5 @@ export class EditComponent implements OnInit {
       country : ''
     })
   }
+  
 }

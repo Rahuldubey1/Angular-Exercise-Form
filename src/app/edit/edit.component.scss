@@ -5,7 +5,6 @@
     width: 60%;
     text-align: center;
     border: none;
-    border-radius: 1.5rem;
     font-weight: bold;
     font-size: x-large;
     margin-top: 30px;
@@ -14,9 +13,17 @@
 .btn{
     background-color: #4CAF50; /* Green */
   border: none;
-  border-radius: 30px;
   color: white;
   padding: 15px 32px;
 
+  font-size: 16px;
+}
+.btn-cancel{
+  margin-top: 369px;
+  height: 48px;
+  width: 95px;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
   font-size: 16px;
 }

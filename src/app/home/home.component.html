@@ -1,24 +1,47 @@
-<div >
-    <ul class="navbar-nav">
-    <li>
-        Event Name:{{userData.eventName}}
-    </li>
-    <li>
-        Date : {{userData.date}}
-    </li>
-    <li>
-        Time : {{userData.time}}
-    </li>
-    <li>
-        Address : {{userData.address}}
-    </li>
-    <li>
-        City : {{userData.city}}
-    </li>
-    <li>
-        Country : {{userData.country}}
-    </li>
-    <button (click)="editData()">edit</button>
-    <button>edit</button>
+<div>
+    <ul>
+        <li>
+            Event Name
+        </li>
+        <li>
+            Date 
+        </li>
+        <li>
+            Time 
+        </li>
+        <li>
+            Address  
+        </li>
+        <li>
+            City 
+        </li>
+        <li>
+            Country 
+        </li>
+        <li>
+            Action
+        </li>
+    </ul>
+    <ul *ngFor ="let x of userData; index as i">
+        <li>
+            {{x.eventName}}
+        </li>
+        <li>
+            {{x.date}}
+        </li>
+        <li>
+            {{x.time}}
+        </li>
+        <li>
+            {{x.address}}
+        </li>
+        <li>
+            {{x.city}}
+        </li>
+        <li>
+            {{x.country}}
+        </li>
+        <button (click)="editData(userData,i)">Edit</button>
+        <button (click)="deleteData(userData,i)">Delete</button>
     </ul>
 </div>
