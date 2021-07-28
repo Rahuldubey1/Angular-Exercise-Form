@@ -115,7 +115,6 @@ export class EditComponent implements OnInit {
     this.data = this.data.split(",")
     console.log(this.data)
     if(this.data.length == 3){
-      console.log(this.createUser)
     this.createUser.patchValue({
       city : this.data[1],
       country : this.data[2]
