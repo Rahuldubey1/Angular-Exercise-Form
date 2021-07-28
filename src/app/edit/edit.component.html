@@ -1,9 +1,9 @@
 <div class="container register">
-    <div class="row">
+    <div class="row"  style="background: gainsboro;">
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
                 <div class="tab" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <form  class="row register-form" [formGroup]="createUser" (submit)="submitUser()">
+                    <form  class="row register-form" [formGroup]="createUser"> 
                         <div>
                             <div class="form-group">
                               <label>Event name:</label><br>
@@ -13,35 +13,56 @@
                             *ngIf="(createUser.get('eventName')!.invalid && createUser.get('eventName')!.touched) || (createUser.get('eventName')!.untouched && submitted)"> 
                                 <span *ngIf="f.eventName.errors?.pattern">Only char allowed</span>                              
                                 <span *ngIf="f.eventName.errors?.maxlength">Only 100 char allowed</span>                              
-                                <span *ngIf="f.eventName.errors?.required">Please enter valid EventName!</span>   
+                                <span *ngIf="f.eventName.errors?.required || f.eventName.errors?.blankspace">Please enter valid EventName!</span>   
+                                <!-- <span *ngIf="f.eventName.errors?.blankspace">Please enter something!</span>    -->
                             </small>
                             <div class="form-group">
                               <label>Date:</label><br>
                               <input type="date" formControlName="date" class="form-control">
                             </div>
-                            <div class="error-text" *ngIf="message">
+                            <div class="text-danger" *ngIf="message">
                                 <p>{{message}}</p>
                               </div>
                             <div class="form-group">
                               <label>Time:</label><br>
                               <input type="time" formControlName="time" class="form-control">
                             </div>
+                            <small class="text-danger"
+                            *ngIf="(createUser.get('time')!.invalid && createUser.get('time')!.touched) || (createUser.get('time')!.untouched && submitted)">                           
+                                <span *ngIf="f.eventName.errors?.required">Please enter valid time!</span>   
+                            </small>
                             <div class="form-group">
-                              <label>Address:</label><br>
-                              <input type="text" formControlName="address" class="form-control">
+                                <label>Address:</label><br>
+                                <select *ngIf="address"  formControlName="address" class="form-control">
+                                    <option>Select</option>
+                                    <option *ngFor="let x of address">{{x}}</option>
+                                </select>
                             </div>
+                            <small class="text-danger"
+                            *ngIf="(createUser.get('address')!.invalid && createUser.get('address')!.touched) || (createUser.get('address')!.untouched && submitted)">                           
+                                <span *ngIf="f.eventName.errors?.required">Please enter valid Address!</span>   
+                            </small>
                             <div class="form-group">
                               <label>City:</label><br>
                               <input type="text" formControlName="city" class="form-control">
                             </div>
+                            <small class="text-danger"
+                            *ngIf="(createUser.get('city')!.invalid && createUser.get('city')!.touched) || (createUser.get('city')!.untouched && submitted)">                           
+                                <span *ngIf="f.eventName.errors?.required">Please enter valid city!</span>   
+                            </small>
                             <div class="form-group">
                               <label>Country:</label><br>
                               <input type="text" formControlName="country" class="form-control">
                             </div>
+                            <small class="text-danger"
+                            *ngIf="(createUser.get('country')!.invalid && createUser.get('country')!.touched) || (createUser.get('country')!.untouched && submitted)">                           
+                                <span *ngIf="f.eventName.errors?.required">Please enter valid country!</span>   
+                            </small>
                         </div><br>
-                        <button class="btn btn-lg btn-primary pull-xs-right" type="submit"> Save</button>
                     </form>
-                    <button class="btn-cancel" (click)="cancel()"> Cancel</button>
+                    <button class="btn btn-primary mt-2 ms-1 mb-3" (click)="submit()"> Save</button>
+                    <button class="btn btn-primary mt-2 ms-3 mb-3" (click)="cancel()"> Cancel</button>
+                    <button class="btn btn-primary mt-2 ms-3 mb-3" (click)="home()">Go to list</button>
                 </div>
             </div>
         </div>

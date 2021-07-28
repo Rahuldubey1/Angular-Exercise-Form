@@ -1,29 +1,42 @@
-.tab{
-    display: flex;
-    justify-content: center;
-    background: #60607d;
-    width: 60%;
-    text-align: center;
-    border: none;
-    font-weight: bold;
-    font-size: x-large;
-    margin-top: 30px;
-    color:white;
-}
-.btn{
-    background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
+// .tab{
+//     display: flex;
+//     justify-content: center;
+//     background: #60607d;
+//     width: 60%;
+//     text-align: center;
+//     border: none;
+//     font-weight: bold;
+//     font-size: x-large;
+//     margin-top: 30px;
+//     color:white;
+// }
+// .btn{
+//     background-color: #4CAF50; /* Green */
+//   border: none;
+//   color: white;
+//   padding: 15px 32px;
 
-  font-size: 16px;
+//   font-size: 16px;
+// }
+// .btn-cancel{
+//   margin-top: 369px;
+//   height: 48px;
+//   width: 95px;
+//   color: white;
+//   background-color: #4CAF50;
+//   border: none;
+//   font-size: 16px;
+//   margin-left: 15px;
+// }
+// // .container{
+
+// // }
+label{
+  font-size: 30px;
 }
-.btn-cancel{
-  margin-top: 369px;
-  height: 48px;
-  width: 95px;
-  color: white;
-  background-color: #4CAF50;
-  border: none;
-  font-size: 16px;
+input {
+  border-radius: inherit;
+}
+select{
+  border-radius: inherit;
 }

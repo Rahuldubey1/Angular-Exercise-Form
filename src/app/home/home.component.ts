@@ -9,6 +9,7 @@ import { ServicesService } from '../services.service';
 })
 export class HomeComponent implements OnInit {
   userData:any;
+  error:any
   constructor(private service:ServicesService,private router:Router) { }
 
   ngOnInit(): void {
@@ -18,12 +19,17 @@ export class HomeComponent implements OnInit {
   }
 
   editData(data:any,value:any){
-    
+    this.service.setIndex(value)
     this.service.setItem(this.userData[value])
     this.router.navigateByUrl('');
   }
+  
   deleteData(data:any,value:any){
+    this.userData.splice(value,1)
+    localStorage.setItem('user',JSON.stringify(this.userData))
+  }
 
-
+  back(){
+    this.router.navigateByUrl('')
   }
 }
