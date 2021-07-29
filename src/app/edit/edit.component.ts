@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { ServicesService } from '../services.service';
-import { map } from "rxjs/operators"; 
-
-
 
 @Component({
   selector: 'app-edit',
@@ -25,15 +21,7 @@ export class EditComponent implements OnInit {
   constructor(private router:Router,private service: ServicesService) { }
 
   ngOnInit(): void {
-    this.service.getData().subscribe(result=>{
-      console.log(result.results)
-      console.log((result.results[1].business_status))
-      for(let i = 0; i<result.results.length ; i++){
-        if(result.results[i].plus_code){
-          this.address.push(result.results[i].plus_code.compound_code)
-        }
-      }
-    })
+    this.getPlace()
     
     this.createUser = new FormGroup({
       'eventName' : new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]*$'),Validators.maxLength(100),this.blankSpace.bind(this)]),
@@ -57,6 +45,16 @@ export class EditComponent implements OnInit {
     }
   }
 
+  getPlace(){
+    this.service.getData().subscribe(result=>{
+      for(let i = 0; i<result.results.length ; i++){
+        if(result.results[i].plus_code){
+          this.address.push(result.results[i].plus_code.compound_code)
+        }
+      }
+    })
+  }
+
   home(){
     this.router.navigateByUrl('/home')
   }
@@ -78,14 +76,12 @@ export class EditComponent implements OnInit {
       city : this.createUser.value.city,
       country : this.createUser.value.country
     }
-    console.log(data)
     var value:any = []
     var item = localStorage.getItem('user')
     if(item){
-      var abcd= JSON.parse(item)
-
-      for (let i = 0; i < abcd.length; i++) {
-        value.push(abcd[i])
+      var value= JSON.parse(item)
+      for (let i = 0; i < value.length; i++) {
+        value.push(value[i])
       }
     }
     if(this.editData){
@@ -113,7 +109,6 @@ export class EditComponent implements OnInit {
   autoFill(control:FormControl){
     this.data = control.value
     this.data = this.data.split(",")
-    console.log(this.data)
     if(this.data.length == 3){
     this.createUser.patchValue({
       city : this.data[1],
@@ -143,14 +138,6 @@ export class EditComponent implements OnInit {
   }
 
   cancel(){
-    this.createUser.patchValue({
-      eventName: '',
-      date : '',
-      time : '',
-      address: '',
-      city : '',
-      country : ''
-    })
+    this.createUser.reset(); 
   }
-  
 }

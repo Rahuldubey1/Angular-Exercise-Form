@@ -1,5 +1,5 @@
 <div class="container register">
-    <div class="row"  style="background: gainsboro;">
+    <div class="row">
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
                 <div class="tab" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -14,7 +14,6 @@
                                 <span *ngIf="f.eventName.errors?.pattern">Only char allowed</span>                              
                                 <span *ngIf="f.eventName.errors?.maxlength">Only 100 char allowed</span>                              
                                 <span *ngIf="f.eventName.errors?.required || f.eventName.errors?.blankspace">Please enter valid EventName!</span>   
-                                <!-- <span *ngIf="f.eventName.errors?.blankspace">Please enter something!</span>    -->
                             </small>
                             <div class="form-group">
                               <label>Date:</label><br>

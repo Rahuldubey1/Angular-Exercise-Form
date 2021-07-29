@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -10,26 +11,15 @@ import { ServicesService } from '../services.service';
 export class HomeComponent implements OnInit {
   userData:any;
   error:any
-  constructor(private service:ServicesService,private router:Router) { }
+  constructor(private service:ServicesService,private router:Router, private _location:Location) { }
 
   ngOnInit(): void {
     this.userData = localStorage.getItem('user');
     this.userData = JSON.parse(this.userData)
-    console.log(this.userData)
-  }
-
-  editData(data:any,value:any){
-    this.service.setIndex(value)
-    this.service.setItem(this.userData[value])
-    this.router.navigateByUrl('');
-  }
-  
-  deleteData(data:any,value:any){
-    this.userData.splice(value,1)
-    localStorage.setItem('user',JSON.stringify(this.userData))
   }
 
   back(){
-    this.router.navigateByUrl('')
+    this._location.back();
+    // this.router.navigateByUrl('')
   }
 }
