@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
-
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { ListComponent } from './list/list.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlashMessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

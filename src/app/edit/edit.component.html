@@ -11,9 +11,9 @@
                             </div>
                             <small class="text-danger"
                             *ngIf="(createUser.get('eventName')!.invalid && createUser.get('eventName')!.touched) || (createUser.get('eventName')!.untouched && submitted)"> 
-                                <span *ngIf="f.eventName.errors?.pattern">Only char allowed</span>                              
-                                <span *ngIf="f.eventName.errors?.maxlength">Only 100 char allowed</span>                              
-                                <span *ngIf="f.eventName.errors?.required || f.eventName.errors?.blankspace">Please enter valid EventName!</span>   
+                                <span *ngIf="f.eventName.errors?.pattern">{{errorMessages.password.pattern}}</span>                              
+                                <span *ngIf="f.eventName.errors?.maxlength">{{errorMessages.password.maxLength}}</span>                              
+                                <span *ngIf="f.eventName.errors?.required || f.eventName.errors?.blankspace">{{errorMessages.password.required}}</span>   
                             </small>
                             <div class="form-group">
                               <label>Date:</label><br>
@@ -28,7 +28,7 @@
                             </div>
                             <small class="text-danger"
                             *ngIf="(createUser.get('time')!.invalid && createUser.get('time')!.touched) || (createUser.get('time')!.untouched && submitted)">                           
-                                <span *ngIf="f.eventName.errors?.required">Please enter valid time!</span>   
+                                <span *ngIf="f.eventName.errors?.required">{{errorMessages.time.required}}</span>   
                             </small>
                             <div class="form-group">
                                 <label>Address:</label><br>
@@ -42,23 +42,23 @@
                             </div>
                             <small class="text-danger"
                             *ngIf="(createUser.get('address')!.invalid && createUser.get('address')!.touched) || (createUser.get('address')!.untouched && submitted)">                           
-                                <span *ngIf="f.eventName.errors?.required">Please enter valid Address!</span>   
+                                <span *ngIf="f.eventName.errors?.required">{{errorMessages.address.required}}</span>   
                             </small>
                             <div class="form-group">
                               <label>City:</label><br>
-                              <input type="text" formControlName="city" class="form-control">
+                              <input formControlName="city" class="form-control" readonly>
                             </div>
                             <small class="text-danger"
                             *ngIf="(createUser.get('city')!.invalid && createUser.get('city')!.touched) || (createUser.get('city')!.untouched && submitted)">                           
-                                <span *ngIf="f.eventName.errors?.required">Please enter valid city!</span>   
+                                <span *ngIf="f.eventName.errors?.required">{{errorMessages.city.required}}</span>   
                             </small>
                             <div class="form-group">
                               <label>Country:</label><br>
-                              <input type="text" formControlName="country" class="form-control">
+                              <input formControlName="country" class="form-control" readonly>
                             </div>
                             <small class="text-danger"
                             *ngIf="(createUser.get('country')!.invalid && createUser.get('country')!.touched) || (createUser.get('country')!.untouched && submitted)">                           
-                                <span *ngIf="f.eventName.errors?.required">Please enter valid country!</span>   
+                                <span *ngIf="f.eventName.errors?.required">{{errorMessages.country.required}}</span>   
                             </small>
                         </div><br>
                     </form>

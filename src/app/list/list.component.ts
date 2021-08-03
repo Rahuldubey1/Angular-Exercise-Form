@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 import {Location} from '@angular/common';
 
+
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -24,8 +26,10 @@ export class ListComponent implements OnInit {
   }
   
   deleteData(value:any){
-    this.myinputMsg.splice(value,1)
-    localStorage.setItem('user',JSON.stringify(this.myinputMsg))
-  }
+    if(confirm("Are you sure to delete")) {
+      this.myinputMsg.splice(value,1)
+      localStorage.setItem('user',JSON.stringify(this.myinputMsg))
 
+    }
+  }
 }

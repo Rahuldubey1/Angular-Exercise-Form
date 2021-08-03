@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
+import { MESSAGES,PATTERN } from '../displayErrorMsg';
 
 @Component({
   selector: 'app-edit',
@@ -17,6 +18,8 @@ export class EditComponent implements OnInit {
   index:any;
   address:any = [];
   data:any
+  errorMessages = MESSAGES;
+  validPattern = PATTERN;
   
   constructor(private router:Router,private service: ServicesService) { }
 
@@ -24,7 +27,7 @@ export class EditComponent implements OnInit {
     this.getPlace()
     
     this.createUser = new FormGroup({
-      'eventName' : new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]*$'),Validators.maxLength(100),this.blankSpace.bind(this)]),
+      'eventName' : new FormControl('',[Validators.required,Validators.pattern((this.validPattern.alphaNum)),Validators.maxLength(100),this.blankSpace.bind(this)]),
       'date' : new FormControl('',[Validators.required]),
       'time' : new FormControl('',Validators.required),
       'address' : new FormControl('',[Validators.required,this.autoFill.bind(this)]),
