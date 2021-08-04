@@ -25,7 +25,6 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlace()
-    
     this.createUser = new FormGroup({
       'eventName' : new FormControl('',[Validators.required,Validators.pattern((this.validPattern.alphaNum)),Validators.maxLength(100),this.blankSpace.bind(this)]),
       'date' : new FormControl('',[Validators.required]),
@@ -46,6 +45,17 @@ export class EditComponent implements OnInit {
         country : this.editData.country
       })
     }
+    var data = this.service.getValue()
+    if(data == 2){
+      this.createUser.patchValue({
+        eventName: '',
+        date : '',
+        time : '',
+        address: '',
+        city : '',
+        country : ''
+      })
+    }
   }
 
   getPlace(){
@@ -64,7 +74,6 @@ export class EditComponent implements OnInit {
 
   submit(){
     this.submitted = true
-    console.log(this.createUser)
     const errorMessage = this.checkValidDate(this.createUser.value.date)
     if(errorMessage) {
       this.message = errorMessage;
@@ -141,6 +150,14 @@ export class EditComponent implements OnInit {
   }
 
   cancel(){
-    this.createUser.reset(); 
+    // this.createUser.reset(); 
+    this.createUser.patchValue({
+      eventName: '',
+      date : '',
+      time : '',
+      address: '',
+      city : '',
+      country : ''
+    })
   }
 }

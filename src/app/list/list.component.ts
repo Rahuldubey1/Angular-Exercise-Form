@@ -21,8 +21,8 @@ export class ListComponent implements OnInit {
   editData(value:any){
     this.service.setIndex(value)
     this.service.setItem(this.myinputMsg[value])
-    // this.router.navigateByUrl('');
     this._location.back();
+    this.service.fillValue(1)
   }
   
   deleteData(value:any){

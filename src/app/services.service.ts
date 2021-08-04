@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 export class ServicesService {
   data:any
   index:any
+  value:any = null
   constructor(private http:HttpClient) { }
   setIndex(data:any){
     this.index = data
@@ -14,6 +15,14 @@ export class ServicesService {
 
   getIndex(){
     return this.index
+  }
+
+  fillValue(data:any){
+    this.value = data
+  }
+
+  getValue(){
+    return this.value
   }
   
   setItem(value:any){

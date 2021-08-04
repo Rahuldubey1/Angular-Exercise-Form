@@ -20,6 +20,6 @@ export class HomeComponent implements OnInit {
 
   back(){
     this._location.back();
-    // this.router.navigateByUrl('')
+    this.service.fillValue(2);
   }
 }
