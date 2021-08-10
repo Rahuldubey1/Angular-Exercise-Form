@@ -29,7 +29,6 @@ export class ListComponent implements OnInit {
     if(confirm("Are you sure to delete")) {
       this.myinputMsg.splice(value,1)
       localStorage.setItem('user',JSON.stringify(this.myinputMsg))
-
     }
   }
 }
