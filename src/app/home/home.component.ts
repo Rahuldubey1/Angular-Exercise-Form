@@ -16,9 +16,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.userData = localStorage.getItem('user');
     this.userData = JSON.parse(this.userData)
+    console.log(this.userData)
   }
 
-  back(){
+  back() {
     this._location.back();
     this.service.fillValue(2);
   }

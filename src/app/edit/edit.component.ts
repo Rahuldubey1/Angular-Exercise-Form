@@ -24,7 +24,7 @@ export class EditComponent implements OnInit {
   constructor(private router:Router,private service: ServicesService) { }
 
   ngOnInit(): void {
-    this.getPlace()
+    // this.getPlace()
     this.createUser = new FormGroup({
       'eventName' : new FormControl('',[Validators.required,Validators.pattern((this.validPattern.alphaNum)),Validators.maxLength(100),this.blankSpace.bind(this)]),
       'date' : new FormControl('',[Validators.required]),
@@ -47,6 +47,7 @@ export class EditComponent implements OnInit {
     }
     var data = this.service.getValue()
     if(data == 2){
+      
       this.createUser.patchValue({
         eventName: '',
         date : '',
@@ -58,15 +59,15 @@ export class EditComponent implements OnInit {
     }
   }
 
-  getPlace(){
-    this.service.getData().subscribe(result=>{
-      for(let i = 0; i<result.results.length ; i++){
-        if(result.results[i].plus_code){
-          this.address.push(result.results[i].plus_code.compound_code)
-        }
-      }
-    })
-  }
+  // getPlace(){
+  //   this.service.getData().subscribe(result=>{
+  //     for(let i = 0; i<result.results.length ; i++){
+  //       if(result.results[i].plus_code){
+  //         this.address.push(result.results[i].plus_code.compound_code)
+  //       }
+  //     }
+  //   })
+  // }
 
   home(){
     this.router.navigateByUrl('/home')
@@ -80,6 +81,7 @@ export class EditComponent implements OnInit {
     } else {
       this.message = '';
     }
+
     var data = {
       eventName: this.createUser.value.eventName.trim(),
       date : this.createUser.value.date,
@@ -88,19 +90,23 @@ export class EditComponent implements OnInit {
       city : this.createUser.value.city,
       country : this.createUser.value.country
     }
+
     var value:any = []
     var item = localStorage.getItem('user')
-    if(item){
-      var value= JSON.parse(item)
-      for (let i = 0; i < value.length; i++) {
-        value.push(value[i])
+
+    if(item) {
+      var backupData = JSON.parse(item)
+      for (let i = 0; i < backupData.length; i++) {
+        value.push(backupData[i])
       }
     }
+
     if(this.editData){
       value[this.index] = data
-    } else{
+    } else {
       value.push(data)
     }
+
     if(this.createUser.valid == true && this.message == ''){
       this.router.navigateByUrl('/home') 
       localStorage.setItem('user',JSON.stringify(value))
